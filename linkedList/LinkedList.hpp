@@ -38,10 +38,6 @@ bool LinkedList<T>::search(T value) const
 	Node<T>* temp = m_front;
 	bool isFound = false;
 
-	/** TODO
-		Fix this method
-	*/
-
 	bool searching = true;
 	// only run if linked list isn't empty
 	if (m_size != 0) {
@@ -116,13 +112,25 @@ void LinkedList<T>::addFront(T value)
 template <typename T>
 bool LinkedList<T>::removeBack()
 {
-	Node<T>* lastNode = nullptr;
-	Node<T>* secondintoLast = nullptr;
+	Node<T>* lastNode = m_front;
+	Node<T>* secondintoLast = m_front;
 	bool isRemoved = false;
 
-	/** TODO
-		Fix this method
-	*/
+	// only attempt removal if LinkedList isn't empty
+	if (m_size != 0) {
+		// finding last node in linkedlist
+		for (int i = 0; i < m_size - 1; i++) {
+			secondintoLast = lastNode;
+			lastNode = lastNode->getNext();
+		}
+		// removing last node from linked list
+		lastNode = nullptr;
+		secondintoLast->setNext(lastNode);
+		// updating m_size to reflect removal
+		m_size = m_size - 1;
+		// setting isRemoved to true
+		isRemoved = true;
+	}
 
 	return(isRemoved);
 }
